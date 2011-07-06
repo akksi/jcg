@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-07-2011 a las 18:23:33
+-- Tiempo de generación: 06-07-2011 a las 18:32:48
 -- Versión del servidor: 5.1.54
 -- Versión de PHP: 5.3.5-1ubuntu7.2
 
@@ -620,7 +620,7 @@ CREATE TABLE IF NOT EXISTS `jcg_extensions` (
   KEY `element_clientid` (`element`,`client_id`),
   KEY `element_folder_clientid` (`element`,`folder`,`client_id`),
   KEY `extension` (`type`,`element`,`folder`,`client_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10000 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10005 ;
 
 --
 -- Volcado de datos para la tabla `jcg_extensions`
@@ -735,7 +735,11 @@ INSERT INTO `jcg_extensions` (`extension_id`, `name`, `type`, `element`, `folder
 (505, 'beez5', 'template', 'beez5', '', 0, 1, 1, 0, '{"legacy":false,"name":"beez5","type":"template","creationDate":"21 May 2010","author":"Angie Radtke","copyright":"Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.","authorEmail":"a.radtke@derauftritt.de","authorUrl":"http:\\/\\/www.der-auftritt.de","version":"1.6.0","description":"TPL_BEEZ5_XML_DESCRIPTION","group":""}', '{"wrapperSmall":"53","wrapperLarge":"72","sitetitle":"","sitedescription":"","navposition":"center","html5":"0"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (600, 'English (United Kingdom)', 'language', 'en-GB', '', 0, 1, 1, 1, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (601, 'English (United Kingdom)', 'language', 'en-GB', '', 1, 1, 1, 1, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(700, 'Joomla! CMS', 'file', 'joomla', '', 0, 1, 1, 1, '{"legacy":false,"name":"files_joomla","type":"file","creationDate":"June 2011","author":"Joomla!","copyright":"(C) 2005 - 2011 Open Source Matters. All rights reserved","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"1.6.4","description":"FILES_JOOMLA_XML_DESCRIPTION","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0);
+(700, 'Joomla! CMS', 'file', 'joomla', '', 0, 1, 1, 1, '{"legacy":false,"name":"files_joomla","type":"file","creationDate":"June 2011","author":"Joomla!","copyright":"(C) 2005 - 2011 Open Source Matters. All rights reserved","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"1.6.4","description":"FILES_JOOMLA_XML_DESCRIPTION","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10001, 'ListG', 'module', 'mod_list', '', 0, 1, 1, 0, '{"legacy":true,"name":"ListG","type":"module","creationDate":"05.07.2011","author":"Guillermo Azurdia","copyright":"","authorEmail":"lazurdia.tpp@gmail.com","authorUrl":"","version":"1.6.0","description":"Modulo para mostrar la lista de juegos en forma vertical y horizontal.","group":""}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10002, 'Preview', 'module', 'mod_preview', '', 0, 1, 1, 0, '{"legacy":true,"name":"Preview","type":"module","creationDate":"05.07.2011","author":"Guillermo Azurdia","copyright":"","authorEmail":"lazurdia.tpp@gmail.com","authorUrl":"","version":"1.6.0","description":"Modulo para mostrar la imagen de previsualizacion de cada juego.","group":""}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10003, 'Thumbnails', 'module', 'mod_thumbnails', '', 0, 1, 1, 0, '{"legacy":true,"name":"Thumbnails","type":"module","creationDate":"05.07.2011","author":"Guillermo Azurdia","copyright":"","authorEmail":"lazurdia.tpp@gmail.com","authorUrl":"","version":"1.6.0","description":"Modulo para mostrar la imagen miniatura de cada juego.","group":""}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10004, 'mod_headings', 'module', 'mod_headings', '', 0, 1, 1, 0, '{"legacy":false,"name":"mod_headings","type":"module","creationDate":"July 2004","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2011 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"1.6.0","description":"MOD_MENU_XML_DESCRIPTION","group":""}', '{"startLevel":"1","endLevel":"0","showAllChildren":"0","cache":"1","cache_time":"900","cachemode":"itemid"}', '', '', 0, '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -805,14 +809,14 @@ CREATE TABLE IF NOT EXISTS `jcg_menu` (
   KEY `idx_alias` (`alias`),
   KEY `idx_path` (`path`(333)),
   KEY `idx_language` (`language`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=102 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=106 ;
 
 --
 -- Volcado de datos para la tabla `jcg_menu`
 --
 
 INSERT INTO `jcg_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `link`, `type`, `published`, `parent_id`, `level`, `component_id`, `ordering`, `checked_out`, `checked_out_time`, `browserNav`, `access`, `img`, `template_style_id`, `params`, `lft`, `rgt`, `home`, `language`, `client_id`) VALUES
-(1, '', 'Menu_Item_Root', 'root', '', '', '', '', 1, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, 0, '', 0, '', 0, 41, 0, '*', 0),
+(1, '', 'Menu_Item_Root', 'root', '', '', '', '', 1, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, 0, '', 0, '', 0, 49, 0, '*', 0),
 (2, 'menu', 'com_banners', 'Banners', '', 'Banners', 'index.php?option=com_banners', 'component', 0, 1, 1, 4, 0, 0, '0000-00-00 00:00:00', 0, 0, 'class:banners', 0, '', 1, 10, 0, '*', 1),
 (3, 'menu', 'com_banners', 'Banners', '', 'Banners/Banners', 'index.php?option=com_banners', 'component', 0, 2, 2, 4, 0, 0, '0000-00-00 00:00:00', 0, 0, 'class:banners', 0, '', 2, 3, 0, '*', 1),
 (4, 'menu', 'com_banners_categories', 'Categories', '', 'Banners/Categories', 'index.php?option=com_categories&extension=com_banners', 'component', 0, 2, 2, 6, 0, 0, '0000-00-00 00:00:00', 0, 0, 'class:banners-cat', 0, '', 4, 5, 0, '*', 1),
@@ -832,7 +836,11 @@ INSERT INTO `jcg_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `lin
 (18, 'menu', 'com_weblinks', 'Weblinks', '', 'Weblinks', 'index.php?option=com_weblinks', 'component', 0, 1, 1, 21, 0, 0, '0000-00-00 00:00:00', 0, 0, 'class:weblinks', 0, '', 31, 36, 0, '*', 1),
 (19, 'menu', 'com_weblinks_links', 'Links', '', 'Weblinks/Links', 'index.php?option=com_weblinks', 'component', 0, 18, 2, 21, 0, 0, '0000-00-00 00:00:00', 0, 0, 'class:weblinks', 0, '', 32, 33, 0, '*', 1),
 (20, 'menu', 'com_weblinks_categories', 'Categories', '', 'Weblinks/Categories', 'index.php?option=com_categories&extension=com_weblinks', 'component', 0, 18, 2, 6, 0, 0, '0000-00-00 00:00:00', 0, 0, 'class:weblinks-cat', 0, '', 34, 35, 0, '*', 1),
-(101, 'mainmenu', 'Home', 'home', '', 'home', 'index.php?option=com_content&view=featured', 'component', 1, 1, 1, 22, 0, 0, '0000-00-00 00:00:00', 0, 1, '', 0, '{"num_leading_articles":"1","num_intro_articles":"3","num_columns":"3","num_links":"0","orderby_pri":"","orderby_sec":"front","order_date":"","multi_column_order":"1","show_pagination":"2","show_pagination_results":"1","show_noauth":"","article-allow_ratings":"","article-allow_comments":"","show_feed_link":"1","feed_summary":"","show_title":"","link_titles":"","show_intro":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_readmore":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","show_page_heading":1,"page_title":"","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 39, 40, 1, '*', 0);
+(101, 'mainmenu', 'Home', 'home', '', 'home', 'index.php?option=com_content&view=featured', 'component', 1, 1, 1, 22, 0, 0, '0000-00-00 00:00:00', 0, 1, '', 4, '{"num_leading_articles":"1","num_intro_articles":"3","num_columns":"3","num_links":"0","orderby_pri":"","orderby_sec":"front","order_date":"","multi_column_order":"1","show_pagination":"2","show_pagination_results":"1","show_noauth":"","article-allow_ratings":"","article-allow_comments":"","show_feed_link":"1","feed_summary":"","show_title":"","link_titles":"","show_intro":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_readmore":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","show_page_heading":1,"page_title":"","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 39, 40, 1, '*', 0),
+(102, 'mheadings', 'Top Games', '2011-07-06-21-16-15', '', '2011-07-06-21-16-15', '', 'url', 1, 1, 1, 0, 0, 42, '2011-07-07 03:59:49', 0, 1, '', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1}', 41, 42, 0, '*', 0),
+(103, 'mheadings', 'Juegos nuevos', '2011-07-06-21-16-29', '', '2011-07-06-21-16-29', '', 'url', 1, 1, 1, 0, 0, 0, '0000-00-00 00:00:00', 0, 1, '', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1}', 43, 44, 0, '*', 0),
+(104, 'mheadings', 'Todos los juegos', '2011-07-06-21-16-43', '', '2011-07-06-21-16-43', '', 'url', 1, 1, 1, 0, 0, 0, '0000-00-00 00:00:00', 0, 1, '', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1}', 45, 46, 0, '*', 0),
+(105, 'mheadings', 'Mis juegos', '2011-07-06-21-17-32', '', '2011-07-06-21-17-32', 'index.php?game=', 'url', 1, 1, 1, 0, 0, 0, '0000-00-00 00:00:00', 0, 1, '', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1}', 47, 48, 0, '*', 0);
 
 -- --------------------------------------------------------
 
@@ -847,14 +855,15 @@ CREATE TABLE IF NOT EXISTS `jcg_menu_types` (
   `description` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_menutype` (`menutype`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `jcg_menu_types`
 --
 
 INSERT INTO `jcg_menu_types` (`id`, `menutype`, `title`, `description`) VALUES
-(1, 'mainmenu', 'Main Menu', 'The main menu for the site');
+(1, 'mainmenu', 'Main Menu', 'The main menu for the site'),
+(2, 'mheadings', 'Menu headings', '');
 
 -- --------------------------------------------------------
 
@@ -917,14 +926,14 @@ CREATE TABLE IF NOT EXISTS `jcg_modules` (
   KEY `published` (`published`,`access`),
   KEY `newsfeeds` (`module`,`published`),
   KEY `idx_language` (`language`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 --
 -- Volcado de datos para la tabla `jcg_modules`
 --
 
 INSERT INTO `jcg_modules` (`id`, `title`, `note`, `content`, `ordering`, `position`, `checked_out`, `checked_out_time`, `publish_up`, `publish_down`, `published`, `module`, `access`, `showtitle`, `params`, `client_id`, `language`) VALUES
-(1, 'Main Menu', '', '', 1, 'position-7', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_menu', 1, 1, '{"menutype":"mainmenu","startLevel":"0","endLevel":"0","showAllChildren":"0","tag_id":"","class_sfx":"","window_open":"","layout":"","moduleclass_sfx":"_menu","cache":"1","cache_time":"900","cachemode":"itemid"}', 0, '*'),
+(1, 'Main Menu', '', '', 1, 'position-1', 42, '2011-07-06 21:27:26', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_menu', 1, 1, '{"menutype":"mainmenu","startLevel":"1","endLevel":"0","showAllChildren":"0","tag_id":"","class_sfx":"","window_open":"","layout":"_:default","moduleclass_sfx":"_menu","cache":"1","cache_time":"900","cachemode":"itemid"}', 0, '*'),
 (2, 'Login', '', '', 1, 'login', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_login', 1, 1, '', 1, '*'),
 (3, 'Popular Articles', '', '', 3, 'cpanel', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_popular', 3, 1, '{"count":"5","catid":"","user_id":"0","layout":"_:default","moduleclass_sfx":"","cache":"0","automatic_title":"1"}', 1, '*'),
 (4, 'Recently Added Articles', '', '', 4, 'cpanel', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_latest', 3, 1, '{"count":"5","ordering":"c_dsc","catid":"","user_id":"0","layout":"_:default","moduleclass_sfx":"","cache":"0","automatic_title":"1"}', 1, '*'),
@@ -937,9 +946,14 @@ INSERT INTO `jcg_modules` (`id`, `title`, `note`, `content`, `ordering`, `positi
 (13, 'Admin Submenu', '', '', 1, 'submenu', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_submenu', 3, 1, '', 1, '*'),
 (14, 'User Status', '', '', 1, 'status', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_status', 3, 1, '', 1, '*'),
 (15, 'Title', '', '', 1, 'title', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_title', 3, 1, '', 1, '*'),
-(16, 'Login Form', '', '', 7, 'position-7', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_login', 1, 1, '{"greeting":"1","name":"0"}', 0, '*'),
+(16, 'Login Form', '', '', 7, 'position-7', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 'mod_login', 1, 1, '{"greeting":"1","name":"0"}', 0, '*'),
 (17, 'Breadcrumbs', '', '', 1, 'position-2', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_breadcrumbs', 1, 1, '{"moduleclass_sfx":"","showHome":"1","homeText":"Home","showComponent":"1","separator":"","cache":"1","cache_time":"900","cachemode":"itemid"}', 0, '*'),
-(18, 'Banners', '', '', 1, 'position-5', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_banners', 1, 1, '{"target":"1","count":"1","cid":"1","catid":["27"],"tag_search":"0","ordering":"0","header_text":"","footer_text":"","layout":"","moduleclass_sfx":"","cache":"1","cache_time":"900"}', 0, '*');
+(18, 'Banners', '', '', 1, 'position-5', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 'mod_banners', 1, 1, '{"target":"1","count":"1","cid":"1","catid":["27"],"tag_search":"0","ordering":"0","header_text":"","footer_text":"","layout":"","moduleclass_sfx":"","cache":"1","cache_time":"900"}', 0, '*'),
+(19, 'Preview', '', '', 1, 'preview', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_preview', 1, 1, '', 0, '*'),
+(24, 'Menu Head Options', '', '', 0, 'headings', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_headings', 1, 1, '{"menutype":"mheadings","startLevel":"1","endLevel":"0","showAllChildren":"0","tag_id":"","class_sfx":"","window_open":"","layout":"_:default","moduleclass_sfx":"","cache":"1","cache_time":"900","cachemode":"itemid"}', 0, '*'),
+(21, 'List Games', '', '', 1, 'list', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_list', 1, 1, '', 0, '*'),
+(22, 'Thumbnails', '', '', 1, 'thumbnails', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_thumbnails', 1, 1, '', 0, '*'),
+(23, 'Menu Head', '', '', 0, 'headings', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', -2, 'mod_menu', 1, 1, '{"menutype":"mheadings","startLevel":"1","endLevel":"0","showAllChildren":"0","tag_id":"","class_sfx":"","window_open":"","layout":"_:default","moduleclass_sfx":"","cache":"1","cache_time":"900","cachemode":"itemid"}', 0, '*');
 
 -- --------------------------------------------------------
 
@@ -973,7 +987,12 @@ INSERT INTO `jcg_modules_menu` (`moduleid`, `menuid`) VALUES
 (15, 0),
 (16, 0),
 (17, 0),
-(18, 0);
+(18, 0),
+(19, 0),
+(21, 0),
+(22, 0),
+(23, 0),
+(24, 0);
 
 -- --------------------------------------------------------
 
@@ -1037,7 +1056,14 @@ CREATE TABLE IF NOT EXISTS `jcg_redirect_links` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_link_old` (`old_url`),
   KEY `idx_link_modifed` (`modified_date`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `jcg_redirect_links`
+--
+
+INSERT INTO `jcg_redirect_links` (`id`, `old_url`, `new_url`, `referer`, `comment`, `published`, `created_date`, `modified_date`) VALUES
+(1, 'http://localhost/jcg/index.php?game=&Itemid=105', '', 'http://localhost/jcg/', '', 0, '2011-07-06 21:31:05', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1077,7 +1103,7 @@ CREATE TABLE IF NOT EXISTS `jcg_session` (
 --
 
 INSERT INTO `jcg_session` (`session_id`, `client_id`, `guest`, `time`, `data`, `userid`, `username`, `usertype`) VALUES
-('mufa502nm7mut005l9edes7dj0', 1, 0, '1309901323', '__default|a:8:{s:15:"session.counter";i:10;s:19:"session.timer.start";i:1309901044;s:18:"session.timer.last";i:1309901319;s:17:"session.timer.now";i:1309901323;s:22:"session.client.browser";s:135:"Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.30 (KHTML, like Gecko) Ubuntu/11.04 Chromium/12.0.742.91 Chrome/12.0.742.91 Safari/534.30";s:8:"registry";O:9:"JRegistry":1:{s:7:"\0*\0data";O:8:"stdClass":2:{s:11:"application";O:8:"stdClass":1:{s:4:"lang";s:0:"";}s:11:"com_modules";O:8:"stdClass":2:{s:4:"edit";O:8:"stdClass":1:{s:6:"module";O:8:"stdClass":2:{s:2:"id";a:0:{}s:4:"data";N;}}s:3:"add";O:8:"stdClass":1:{s:6:"module";O:8:"stdClass":1:{s:12:"extension_id";N;}}}}}s:4:"user";O:5:"JUser":23:{s:9:"\0*\0isRoot";b:1;s:2:"id";s:2:"42";s:4:"name";s:10:"Super User";s:8:"username";s:3:"ntc";s:5:"email";s:22:"lazurdia.tpp@gmail.com";s:8:"password";s:65:"ee094c07b292e1474227958217646e0e:I8DVZzcQFUuFvn0Cao7wxmrR6vBBaH1v";s:14:"password_clear";s:0:"";s:8:"usertype";s:10:"deprecated";s:5:"block";s:1:"0";s:9:"sendEmail";s:1:"1";s:12:"registerDate";s:19:"2011-07-05 20:26:53";s:13:"lastvisitDate";s:19:"2011-07-05 20:27:34";s:10:"activation";s:0:"";s:6:"params";s:0:"";s:6:"groups";a:1:{s:11:"Super Users";s:1:"8";}s:5:"guest";i:0;s:10:"\0*\0_params";O:9:"JRegistry":1:{s:7:"\0*\0data";O:8:"stdClass":0:{}}s:14:"\0*\0_authGroups";a:2:{i:0;i:1;i:1;i:8;}s:14:"\0*\0_authLevels";a:4:{i:0;i:1;i:1;i:1;i:2;i:2;i:3;i:3;}s:15:"\0*\0_authActions";N;s:12:"\0*\0_errorMsg";N;s:10:"\0*\0_errors";a:0:{}s:3:"aid";i:0;}s:13:"session.token";s:32:"ae5f246a0420e35f5c641c117cac481d";}', 42, 'ntc', '');
+('hcramrn5i3benlohqcbkk7isc6', 0, 1, '1309994869', '__default|a:7:{s:15:"session.counter";i:3;s:19:"session.timer.start";i:1309994868;s:18:"session.timer.last";i:1309994868;s:17:"session.timer.now";i:1309994869;s:22:"session.client.browser";s:135:"Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.30 (KHTML, like Gecko) Ubuntu/11.04 Chromium/12.0.742.91 Chrome/12.0.742.91 Safari/534.30";s:8:"registry";O:9:"JRegistry":1:{s:7:"\0*\0data";O:8:"stdClass":0:{}}s:4:"user";O:5:"JUser":23:{s:9:"\0*\0isRoot";b:0;s:2:"id";i:0;s:4:"name";N;s:8:"username";N;s:5:"email";N;s:8:"password";N;s:14:"password_clear";s:0:"";s:8:"usertype";N;s:5:"block";N;s:9:"sendEmail";i:0;s:12:"registerDate";N;s:13:"lastvisitDate";N;s:10:"activation";N;s:6:"params";N;s:6:"groups";a:0:{}s:5:"guest";i:1;s:10:"\0*\0_params";O:9:"JRegistry":1:{s:7:"\0*\0data";O:8:"stdClass":0:{}}s:14:"\0*\0_authGroups";a:1:{i:0;i:1;}s:14:"\0*\0_authLevels";a:2:{i:0;i:1;i:1;i:1;}s:15:"\0*\0_authActions";N;s:12:"\0*\0_errorMsg";N;s:10:"\0*\0_errors";a:0:{}s:3:"aid";i:0;}}', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -1104,7 +1130,7 @@ CREATE TABLE IF NOT EXISTS `jcg_template_styles` (
 INSERT INTO `jcg_template_styles` (`id`, `template`, `client_id`, `home`, `title`, `params`) VALUES
 (2, 'bluestork', 1, '1', 'Bluestork - Default', '{"useRoundedCorners":"1","showSiteName":"0"}'),
 (3, 'atomic', 0, '0', 'Atomic - Default', '{}'),
-(4, 'beez_20', 0, '1', 'Beez2 - Default', '{"wrapperSmall":"53","wrapperLarge":"72","logo":"images\\/joomla_black.gif","sitetitle":"Joomla!","sitedescription":"Open Source Content Management","navposition":"left","templatecolor":"personal","html5":"0"}'),
+(4, 'beez_20', 0, '1', 'Beez2 - Default', '{"wrapperSmall":53,"wrapperLarge":72,"logo":"images\\/joomla_black.gif","sitetitle":"Joomla!","sitedescription":"Open Source Content Management","navposition":"left","templatecolor":"personal"}'),
 (5, 'hathor', 1, '0', 'Hathor - Default', '{"showSiteName":"0","colourChoice":"","boldText":"0"}'),
 (6, 'beez5', 0, '0', 'Beez5 - Default-Fruit Shop', '{"wrapperSmall":"53","wrapperLarge":"72","logo":"images\\/sampledata\\/fruitshop\\/fruits.gif","sitetitle":"Matuna Market ","sitedescription":"Fruit Shop Sample Site","navposition":"left","html5":"0"}');
 
@@ -1254,7 +1280,7 @@ CREATE TABLE IF NOT EXISTS `jcg_users` (
 --
 
 INSERT INTO `jcg_users` (`id`, `name`, `username`, `email`, `password`, `usertype`, `block`, `sendEmail`, `registerDate`, `lastvisitDate`, `activation`, `params`) VALUES
-(42, 'Super User', 'ntc', 'lazurdia.tpp@gmail.com', 'ee094c07b292e1474227958217646e0e:I8DVZzcQFUuFvn0Cao7wxmrR6vBBaH1v', 'deprecated', 0, 1, '2011-07-05 20:26:53', '2011-07-05 21:27:19', '', '');
+(42, 'Super User', 'ntc', 'lazurdia.tpp@gmail.com', 'ee094c07b292e1474227958217646e0e:I8DVZzcQFUuFvn0Cao7wxmrR6vBBaH1v', 'deprecated', 0, 1, '2011-07-05 20:26:53', '2011-07-06 22:25:53', '', '');
 
 -- --------------------------------------------------------
 
@@ -1382,10 +1408,10 @@ CREATE TABLE IF NOT EXISTS `merchant` (
 --
 
 CREATE TABLE IF NOT EXISTS `status` (
-  `idStatus` int(11) NOT NULL,
+  `idStatus` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idStatus`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1472,8 +1498,8 @@ ALTER TABLE `bannerCategory`
 -- Filtros para la tabla `bannerGame`
 --
 ALTER TABLE `bannerGame`
-  ADD CONSTRAINT `fk_bannerGame_game` FOREIGN KEY (`game_idGame`) REFERENCES `game` (`idGame`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_bannerGame_banner` FOREIGN KEY (`Idbanner`) REFERENCES `banner` (`Idbanner`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_bannerGame_game` FOREIGN KEY (`game_idGame`) REFERENCES `game` (`idGame`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_bannerGame_status` FOREIGN KEY (`idStatus`) REFERENCES `status` (`idStatus`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -1487,8 +1513,8 @@ ALTER TABLE `categoryContent`
 --
 ALTER TABLE `content`
   ADD CONSTRAINT `fk_content_categoryContent` FOREIGN KEY (`idCategoryContent`) REFERENCES `categoryContent` (`idCategoryContent`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_content_status` FOREIGN KEY (`status_idStatus`) REFERENCES `status` (`idStatus`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_content_game` FOREIGN KEY (`idGame`) REFERENCES `game` (`idGame`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_content_game` FOREIGN KEY (`idGame`) REFERENCES `game` (`idGame`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_content_status` FOREIGN KEY (`status_idStatus`) REFERENCES `status` (`idStatus`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `game`
@@ -1510,9 +1536,9 @@ ALTER TABLE `gameDetails`
 -- Filtros para la tabla `gamePlayFriend`
 --
 ALTER TABLE `gamePlayFriend`
+  ADD CONSTRAINT `fk_friend_gameDetails` FOREIGN KEY (`gameDetails_idGameDetails`) REFERENCES `gameDetails` (`idGameDetails`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_friend_userFB` FOREIGN KEY (`uid`) REFERENCES `userFB` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_friend_userFBC` FOREIGN KEY (`uidFriend`) REFERENCES `userFB` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_friend_gameDetails` FOREIGN KEY (`gameDetails_idGameDetails`) REFERENCES `gameDetails` (`idGameDetails`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_gamePlayFriend_avatars` FOREIGN KEY (`idAvatars`) REFERENCES `avatars` (`idAvatars`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -1520,9 +1546,9 @@ ALTER TABLE `gamePlayFriend`
 --
 ALTER TABLE `gamesUserFb`
   ADD CONSTRAINT `fk_gamesUserFb_game` FOREIGN KEY (`game_idGame`) REFERENCES `game` (`idGame`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_gamesUserFb_userFB` FOREIGN KEY (`userFB_uid`) REFERENCES `userFB` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_gamesUserFb_gift` FOREIGN KEY (`idGift`) REFERENCES `gift` (`idGift`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_gamesUserFb_status` FOREIGN KEY (`idStatus`) REFERENCES `status` (`idStatus`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_gamesUserFb_gift` FOREIGN KEY (`idGift`) REFERENCES `gift` (`idGift`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_gamesUserFb_userFB` FOREIGN KEY (`userFB_uid`) REFERENCES `userFB` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `gift`
