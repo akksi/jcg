@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.6.0">
+	<name>Thumbnails</name>
+	<author>Guillermo Azurdia</author>
+	<version>1.6.0</version>
+	<creationDate>05.07.2011</creationDate>
+	<description>Modulo para mostrar la imagen miniatura de cada juego.</description>
+	<authorEmail>lazurdia.tpp@gmail.com</authorEmail>
+	<files>
+		<filename module="mod_thumbnails">mod_thumbnails.php</filename>
+		<filename>helper.php</filename>
+		<filename>mod_thumbnails.xml</filename>
+		<filename>tmpl/default.php</filename>
+		<filename>tmpl/index.html</filename>
+	</files>
+	<params>
+		<param name="clase" type="text" default="thumbnails" label="" description="" />
+		<param name="asignarCss" type="radio" default="1" label="Clase css" description="Determina si se debe asignar la clase css o no">
+			<option value="0">No</option>
+			<option value="1">Si</option>
+		</param>
+	</params>
+</install>

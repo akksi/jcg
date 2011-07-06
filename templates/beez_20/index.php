@@ -30,6 +30,8 @@ $doc				= JFactory::getDocument();
 $templateparams     = $app->getTemplate(true)->params;
 
 $doc->addScript($this->baseurl.'/templates/beez_20/javascript/md_stylechanger.js', 'text/javascript', true);
+$doc->addScript($this->baseurl.'/templates/beez_20/javascript/jquery-min.js', 'text/javascript', true);
+$doc->addScript($this->baseurl.'/templates/beez_20/javascript/jquery-carousel.min.js', 'text/javascript', true);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" >
@@ -39,6 +41,7 @@ $doc->addScript($this->baseurl.'/templates/beez_20/javascript/md_stylechanger.js
                 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/position.css" type="text/css" media="screen,projection" />
                 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/layout.css" type="text/css" media="screen,projection" />
                 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/print.css" type="text/css" media="print" />
+                <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/carousel.css" type="text/css" />
 <?php
         $files = JHtml::_('stylesheet','templates/beez_20/css/general.css',null,false,true);
         if ($files):
@@ -103,6 +106,8 @@ $doc->addScript($this->baseurl.'/templates/beez_20/javascript/md_stylechanger.js
                         var biggerTitle='<?php echo JText::_('TPL_BEEZ2_INCREASE_SIZE'); ?>';
                         var resetTitle='<?php echo JText::_('TPL_BEEZ2_REVERT_STYLES_TO_DEFAULT'); ?>';
                         var smallerTitle='<?php echo JText::_('TPL_BEEZ2_DECREASE_SIZE'); ?>';
+                        
+                        jQuery.noConflict();
                 </script>
 
         </head>
@@ -181,6 +186,23 @@ $doc->addScript($this->baseurl.'/templates/beez_20/javascript/md_stylechanger.js
                                                 <?php endif; ?>
 
                                                         <jdoc:include type="component" />
+                                                        
+                                                        <?php if ($this->countModules('preview')): ?>
+              	<div id="top"><jdoc:include type="modules" name="preview"   />
+              	</div>
+            	<?php endif; ?>
+              <?php if ($this->countModules('thumbnails')): ?>
+              	<div id="top"><jdoc:include type="modules" name="thumbnails"   />
+              	</div>
+            	<?php endif; ?>
+              <?php if ($this->countModules('headings')): ?>
+              	<div id="top"><jdoc:include type="modules" name="headings"   />
+              	</div>
+            	<?php endif; ?>
+              <?php if ($this->countModules('list')): ?>
+              	<div id="top"><jdoc:include type="modules" name="list"   />
+              	</div>
+            	<?php endif; ?>
 
                                                 </div><!-- end main -->
 
