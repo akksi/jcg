@@ -18,7 +18,7 @@ if (count($list))
 }
 #gamelist td {
 	padding: 5px;
-width: 50%;
+	width: 50%;
 }
 </style>
 
@@ -76,7 +76,7 @@ $j('#gamelist a').click(function(e) {
 		data: ({game: game}),
 		dataType: "json",
 		success: function(t) {
-			$j('#game_preview').html('<img src="' + t.webpath + '" width="580" height="163" />');
+			$j('#game_preview').html(t.webpath);
 		}
 	})
 });

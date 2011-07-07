@@ -14,7 +14,7 @@ if ($params->get('asignarCss'))
 	{
 	?>
 	
-	<img src="<?php echo $img->webpath; ?>" width="580" height="163" />
+	<a href="<?php echo ''; ?>"><img src="<?php echo $img->webpath; ?>" width="580" height="163" /></a>
 	
 	<?php
 	}

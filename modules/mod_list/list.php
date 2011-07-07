@@ -16,7 +16,7 @@ if ($_POST)
 {
 	$game_id = JRequest::getInt('game', '', 'post');
 	
-	$sql = 'SELECT *
+	$sql = 'SELECT g.idGame, f.webpath
 		FROM game g
 		INNER JOIN uploaded_files f ON g.idFilePreview = f.file_id 
 		WHERE g.idGame = ' . (int) $game_id;
@@ -32,7 +32,7 @@ if ($_POST)
 	{
 		foreach ($result as $row)
 		{
-			$response['webpath'] = $row->webpath;
+			$response['webpath'] = '<a href="#' . $row->idGame . '"><img src="' . $row->webpath . '" width="580" height="163" /></a>';
 		}
 	}
 	
