@@ -24,7 +24,9 @@ if ($_POST)
 	
 	$result = $db->loadObjectList();
 	
-	$response = array();
+	$response = array(
+		'webpath' => ''
+	);
 	
 	if (count($result))
 	{
@@ -32,10 +34,6 @@ if ($_POST)
 		{
 			$response['webpath'] = $row->webpath;
 		}
-	}
-	else
-	{
-		$response['webpath'] = '';
 	}
 	
 	echo json_encode($response);

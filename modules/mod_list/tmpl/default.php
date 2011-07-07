@@ -1,9 +1,5 @@
 <?php
 
-$list2 = array(
-	'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
-);
-
 if (count($list))
 {
 	$cols = 2;
@@ -41,7 +37,9 @@ width: 50%;
 		
 		?>
 		<td>
+			<img src="<?php echo $row->webpath; ?>" align="left" />
 			<h2><a id="_<?php echo $row->idGame; ?>" class="gamelist" href="#<?php echo $row->game_id; ?>"><?php echo $row->name; ?></a></h2>
+			<p><?php echo $row->description; ?></p>
 		</td>
 		<?php
 		
@@ -68,8 +66,9 @@ width: 50%;
 //<![CDATA
 
 var btn =jQuery('#botonC');
-$j('#gamelist a').click(function() {
+$j('#gamelist a').click(function(e) {
 	var game = $(this).id;
+	e.preventDefault();
 
 	$j.ajax({
 		type: "POST",
@@ -77,7 +76,7 @@ $j('#gamelist a').click(function() {
 		data: ({game: game}),
 		dataType: "json",
 		success: function(t) {
-			$j('#game_preview').html('<img src="' + t.webpath + '" />');
+			$j('#game_preview').html('<img src="' + t.webpath + '" width="580" height="163" />');
 		}
 	})
 });

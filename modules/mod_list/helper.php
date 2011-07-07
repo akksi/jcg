@@ -4,7 +4,7 @@ class modlistHelper
 {
 	function generate_list($params)
 	{
-		$sql = 'SELECT *
+		$sql = 'SELECT g.idGame, g.name, g.description, f.webpath
 			FROM game g
 			INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
 			ORDER BY g.name';
@@ -13,6 +13,7 @@ class modlistHelper
 		$db->setQuery($sql);
 		
 		$list = $db->loadObjectList();
+		
 		return $list;
 	}
 }
