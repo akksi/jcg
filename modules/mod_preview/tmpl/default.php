@@ -7,10 +7,8 @@ if ($params->get('asignarCss'))
 
 ?>
 
-<div<?php if (isset($css)) { echo ' class="' . $css . '"';} ?> >
+<div id="game_preview"<?php if (isset($css)) { echo ' class="' . $css . '"';} ?> >
 	<?php
-	
-	var_dump($images);
 	
 	foreach ($images as $img)
 	{

@@ -30,8 +30,8 @@ $doc				= JFactory::getDocument();
 $templateparams     = $app->getTemplate(true)->params;
 
 $doc->addScript($this->baseurl.'/templates/beez_20/javascript/md_stylechanger.js', 'text/javascript', true);
-$doc->addScript($this->baseurl.'/templates/beez_20/javascript/jquery-min.js', 'text/javascript', true);
-$doc->addScript($this->baseurl.'/templates/beez_20/javascript/jquery-carousel.min.js', 'text/javascript', true);
+$doc->addScript($this->baseurl.'/templates/beez_20/javascript/mt-carousel.js', 'text/javascript');
+$doc->addScript($this->baseurl.'/templates/beez_20/javascript/jquery-min.js', 'text/javascript');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" >
@@ -41,7 +41,7 @@ $doc->addScript($this->baseurl.'/templates/beez_20/javascript/jquery-carousel.mi
                 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/position.css" type="text/css" media="screen,projection" />
                 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/layout.css" type="text/css" media="screen,projection" />
                 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/print.css" type="text/css" media="print" />
-                <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/carousel.css" type="text/css" />
+                
 <?php
         $files = JHtml::_('stylesheet','templates/beez_20/css/general.css',null,false,true);
         if ($files):
@@ -56,6 +56,7 @@ $doc->addScript($this->baseurl.'/templates/beez_20/javascript/jquery-carousel.mi
         endif;
 ?>
                 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/<?php echo htmlspecialchars($color); ?>.css" type="text/css" />
+                <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/carousel.css" type="text/css" />
 <?php			if ($this->direction == 'rtl') : ?>
                 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/template_rtl.css" type="text/css" />
 <?php				if (file_exists(JPATH_SITE. DS . '/templates/beez_20/css/' . $color . '_rtl.css')) :?>
@@ -107,12 +108,12 @@ $doc->addScript($this->baseurl.'/templates/beez_20/javascript/jquery-carousel.mi
                         var resetTitle='<?php echo JText::_('TPL_BEEZ2_REVERT_STYLES_TO_DEFAULT'); ?>';
                         var smallerTitle='<?php echo JText::_('TPL_BEEZ2_DECREASE_SIZE'); ?>';
                         
-                        jQuery.noConflict();
-                </script>
-
+                        var $j = jQuery.noConflict();
+                       </script>
         </head>
 
         <body>
+        	
 
 <div id="all">
         <div id="back">
