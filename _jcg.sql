@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-07-2011 a las 18:32:48
+-- Tiempo de generación: 07-07-2011 a las 18:37:48
 -- Versión del servidor: 5.1.54
 -- Versión de PHP: 5.3.5-1ubuntu7.2
 
@@ -131,7 +131,16 @@ CREATE TABLE IF NOT EXISTS `file_category` (
   `file_category_id` int(11) NOT NULL AUTO_INCREMENT,
   `file_category_description` varchar(100) NOT NULL,
   PRIMARY KEY (`file_category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `file_category`
+--
+
+INSERT INTO `file_category` (`file_category_id`, `file_category_description`) VALUES
+(1, 'Flash'),
+(2, 'Thumbnail'),
+(3, 'Preview');
 
 -- --------------------------------------------------------
 
@@ -140,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `file_category` (
 --
 
 CREATE TABLE IF NOT EXISTS `game` (
-  `idGame` int(11) NOT NULL,
+  `idGame` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(300) NOT NULL,
   `creationDate` datetime NOT NULL,
   `activationDate` datetime DEFAULT NULL,
@@ -157,7 +166,16 @@ CREATE TABLE IF NOT EXISTS `game` (
   KEY `fk_file_flash` (`idFileFlash`),
   KEY `fk_file_preview` (`idFilePreview`),
   KEY `fk_file_thumbnail` (`idFileThumbnail`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Volcado de datos para la tabla `game`
+--
+
+INSERT INTO `game` (`idGame`, `name`, `creationDate`, `activationDate`, `expirationDate`, `description`, `creationIp`, `expirationIp`, `idStatus`, `idFileFlash`, `idFilePreview`, `idFileThumbnail`) VALUES
+(3, 'Juego 1', '0000-00-00 00:00:00', NULL, NULL, 'Descripcion Juego 1', NULL, NULL, 1, 1, 1, 1),
+(4, 'Juego 2', '0000-00-00 00:00:00', NULL, NULL, 'Lorem Ipsum Juego 2', NULL, NULL, 1, 2, 2, 2),
+(5, 'Juego 3', '0000-00-00 00:00:00', NULL, NULL, 'Lorem Ipsum Lorem Ipsum Lorem Ipsum Juego 3', NULL, NULL, 1, 3, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -1103,7 +1121,8 @@ CREATE TABLE IF NOT EXISTS `jcg_session` (
 --
 
 INSERT INTO `jcg_session` (`session_id`, `client_id`, `guest`, `time`, `data`, `userid`, `username`, `usertype`) VALUES
-('hcramrn5i3benlohqcbkk7isc6', 0, 1, '1309994869', '__default|a:7:{s:15:"session.counter";i:3;s:19:"session.timer.start";i:1309994868;s:18:"session.timer.last";i:1309994868;s:17:"session.timer.now";i:1309994869;s:22:"session.client.browser";s:135:"Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.30 (KHTML, like Gecko) Ubuntu/11.04 Chromium/12.0.742.91 Chrome/12.0.742.91 Safari/534.30";s:8:"registry";O:9:"JRegistry":1:{s:7:"\0*\0data";O:8:"stdClass":0:{}}s:4:"user";O:5:"JUser":23:{s:9:"\0*\0isRoot";b:0;s:2:"id";i:0;s:4:"name";N;s:8:"username";N;s:5:"email";N;s:8:"password";N;s:14:"password_clear";s:0:"";s:8:"usertype";N;s:5:"block";N;s:9:"sendEmail";i:0;s:12:"registerDate";N;s:13:"lastvisitDate";N;s:10:"activation";N;s:6:"params";N;s:6:"groups";a:0:{}s:5:"guest";i:1;s:10:"\0*\0_params";O:9:"JRegistry":1:{s:7:"\0*\0data";O:8:"stdClass":0:{}}s:14:"\0*\0_authGroups";a:1:{i:0;i:1;}s:14:"\0*\0_authLevels";a:2:{i:0;i:1;i:1;i:1;}s:15:"\0*\0_authActions";N;s:12:"\0*\0_errorMsg";N;s:10:"\0*\0_errors";a:0:{}s:3:"aid";i:0;}}', 0, '', '');
+('7b249d8bc232bc15fad87901f65d77af', 0, 1, '1310081688', '__default|a:7:{s:22:"session.client.browser";s:135:"Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.30 (KHTML, like Gecko) Ubuntu/11.04 Chromium/12.0.742.91 Chrome/12.0.742.91 Safari/534.30";s:15:"session.counter";i:45;s:8:"registry";O:9:"JRegistry":1:{s:7:"\0*\0data";O:8:"stdClass":0:{}}s:4:"user";O:5:"JUser":23:{s:9:"\0*\0isRoot";b:0;s:2:"id";i:0;s:4:"name";N;s:8:"username";N;s:5:"email";N;s:8:"password";N;s:14:"password_clear";s:0:"";s:8:"usertype";N;s:5:"block";N;s:9:"sendEmail";i:0;s:12:"registerDate";N;s:13:"lastvisitDate";N;s:10:"activation";N;s:6:"params";N;s:6:"groups";a:0:{}s:5:"guest";i:1;s:10:"\0*\0_params";O:9:"JRegistry":1:{s:7:"\0*\0data";O:8:"stdClass":0:{}}s:14:"\0*\0_authGroups";a:1:{i:0;i:1;}s:14:"\0*\0_authLevels";a:2:{i:0;i:1;i:1;i:1;}s:15:"\0*\0_authActions";N;s:12:"\0*\0_errorMsg";N;s:10:"\0*\0_errors";a:0:{}s:3:"aid";i:0;}s:19:"session.timer.start";i:1310080099;s:18:"session.timer.last";i:1310081687;s:17:"session.timer.now";i:1310081688;}', 0, '', ''),
+('7e2e5494cf918f9e7b1c8a806c007fa8', 0, 1, '1310081790', '__default|a:7:{s:15:"session.counter";i:13;s:19:"session.timer.start";i:1310081155;s:18:"session.timer.last";i:1310081781;s:17:"session.timer.now";i:1310081790;s:22:"session.client.browser";s:64:"Mozilla/5.0 (X11; Linux i686; rv:5.0) Gecko/20100101 Firefox/5.0";s:8:"registry";O:9:"JRegistry":1:{s:7:"\0*\0data";O:8:"stdClass":0:{}}s:4:"user";O:5:"JUser":23:{s:9:"\0*\0isRoot";b:0;s:2:"id";i:0;s:4:"name";N;s:8:"username";N;s:5:"email";N;s:8:"password";N;s:14:"password_clear";s:0:"";s:8:"usertype";N;s:5:"block";N;s:9:"sendEmail";i:0;s:12:"registerDate";N;s:13:"lastvisitDate";N;s:10:"activation";N;s:6:"params";N;s:6:"groups";a:0:{}s:5:"guest";i:1;s:10:"\0*\0_params";O:9:"JRegistry":1:{s:7:"\0*\0data";O:8:"stdClass":0:{}}s:14:"\0*\0_authGroups";a:1:{i:0;i:1;}s:14:"\0*\0_authLevels";a:2:{i:0;i:1;i:1;i:1;}s:15:"\0*\0_authActions";N;s:12:"\0*\0_errorMsg";N;s:10:"\0*\0_errors";a:0:{}s:3:"aid";i:0;}}', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -1411,7 +1430,15 @@ CREATE TABLE IF NOT EXISTS `status` (
   `idStatus` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idStatus`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `status`
+--
+
+INSERT INTO `status` (`idStatus`, `name`) VALUES
+(1, 'Activo'),
+(2, 'Inactivo');
 
 -- --------------------------------------------------------
 
@@ -1444,7 +1471,16 @@ CREATE TABLE IF NOT EXISTS `uploaded_files` (
   `upload_time` datetime NOT NULL,
   PRIMARY KEY (`file_id`),
   KEY `file_category_id` (`file_category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `uploaded_files`
+--
+
+INSERT INTO `uploaded_files` (`file_id`, `file_category_id`, `path`, `webpath`, `file_name`, `mime_type`, `file_size`, `upload_time`) VALUES
+(1, 1, '', 'http://static.flickr.com/66/199481236_dc98b5abb3_s.jpg', '', '', 0, '0000-00-00 00:00:00'),
+(2, 1, '', 'http://static.flickr.com/75/199481072_b4a0d09597_s.jpg', '', '', 0, '0000-00-00 00:00:00'),
+(3, 1, '', 'http://static.flickr.com/57/199481087_33ae73a8de_s.jpg', '', '', 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
