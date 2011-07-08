@@ -37,6 +37,27 @@ if ($_POST)
 				ORDER BY g.name';
 			break;
 		case 'my':
+			$user = JFactory::getUser();
+			$user_id = $user_id->id;
+			
+			if ($user_id)
+			{
+				$sql = 'SELECT g.idGame, g.name, g.description, f.webpath
+					FROM game g
+					INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
+					INNER JOIN gamesUserFB gu ON gu.game_idGame = g.idGame
+					INNER JOIN userFB uf ON uf.uid = gu.userFB_uid
+					INNER JOIN #__users u ON u.id = uf.uid
+					WHERE u.id = ' . (int) $user_id . '  
+					ORDER BY g.name';
+			}
+			else
+			{
+				$sql = 'SELECT g.idGame, g.name, g.description, f.webpath
+					FROM game g
+					INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
+					ORDER BY g.name';
+			}
 			
 			break;
 		default:
