@@ -29,14 +29,14 @@ window.addEvent("domready", function() {
 <div id="wrapper">
 	<div class="gallery thumbgame">
 		<div class="holder">
-			<ul>
+			<ul id="thumbnails">
 				<?php
 				
-				if (count($images))
+				if ($tcount = count($thumbnails))
 				{
-					foreach ($images as $img)
+					foreach ($thumbnails as $row)
 					{
-						echo '<li><img src="' . $img->webpath . '" width="240" height="180" alt="I1" /></li>';
+						echo '<li><a id="_' . $row->idGame . '" href="#' . $row->idGame . '"><img src="' . $row->webpath . '" width="240" height="180" alt="I1" /></a></li>';
 					}
 				}
 				else
@@ -57,9 +57,47 @@ window.addEvent("domready", function() {
 				?>
 			</ul>
 		</div>
+		<?php
+		
+		if ($tcount > 4)
+		{
+		?>
+		
 		<div class="control">
 			<a href="#" class="prev">prev</a>
 			<a href="#" class="next">next</a>
 		</div>
+		
+		<?php
+		}
+
+		?>
 	</div>
 </div>
+
+<?php
+
+$url = JURI::base(true) . DS . 'modules' . DS . 'mod_list' . DS . 'list.php';
+
+?>
+
+<script type="text/javascript">
+//<![CDATA
+
+$j('#thumbnails a').click(function(e) {
+	var game = $(this).id;
+	e.preventDefault();
+
+	$j.ajax({
+		type: "POST",
+		url:  "<?php echo $url; ?>",
+		data: ({game: game}),
+		dataType: "json",
+		success: function(t) {
+			$j('#game_preview').html(t.webpath);
+		}
+	})
+});
+
+//]]>
+</script>

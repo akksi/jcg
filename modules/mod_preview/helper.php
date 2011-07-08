@@ -4,11 +4,9 @@ class modpreviewHelper
 {
 	function get_image($params)
 	{
-		$sql = 'SELECT g.idGame, g.webpath
+		$sql = 'SELECT g.idGame, f.webpath
 			FROM game g
-			INNER JOIN uploaded_files f1 ON g.idFileFlash = f1.file_id
-			INNER JOIN uploaded_files f2 ON g.idFilePreview = f2.file_id
-			INNER JOIN uploaded_files f3 ON g.idFileThumbnail = f3.file_id
+			INNER JOIN uploaded_files f ON f.file_id = g.idFileFlash
 			ORDER BY RAND()
 			LIMIT 1';
 		

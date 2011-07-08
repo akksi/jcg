@@ -20,8 +20,12 @@ if (count($list))
 	padding: 5px;
 	width: 50%;
 }
+#gamelist img {
+	margin: 5px;
+}
 </style>
 
+<div id="gamelistcont">
 <table id="gamelist">
 	<?php
 	
@@ -38,7 +42,7 @@ if (count($list))
 		?>
 		<td>
 			<img src="<?php echo $row->webpath; ?>" align="left" />
-			<h2><a id="_<?php echo $row->idGame; ?>" class="gamelist" href="#<?php echo $row->game_id; ?>"><?php echo $row->name; ?></a></h2>
+			<h2><a id="_<?php echo $row->idGame; ?>" class="gamelist" href="#<?php echo $row->idGame; ?>"><?php echo $row->name; ?></a></h2>
 			<p><?php echo $row->description; ?></p>
 		</td>
 		<?php
@@ -61,15 +65,15 @@ if (count($list))
 	
 	?>
 </table>
+</div>
 
 <script type="text/javascript">
 //<![CDATA
 
-var btn =jQuery('#botonC');
 $j('#gamelist a').click(function(e) {
 	var game = $(this).id;
 	e.preventDefault();
-
+	
 	$j.ajax({
 		type: "POST",
 		url:  "<?php echo $url; ?>",

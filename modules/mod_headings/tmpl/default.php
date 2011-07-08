@@ -10,7 +10,8 @@
 // No direct access.
 defined('_JEXEC') or die;
 
-// Note. It is important to remove spaces between elements.
+$url = JURI::base(true) . DS . 'modules' . DS . 'mod_headings' . DS . 'list.php';
+
 ?>
 
 <style type="text/css">
@@ -34,7 +35,32 @@ defined('_JEXEC') or die;
 
 </style>
 
-<ul class="menu_heading<?php echo $class_sfx;?>"<?php
+<script type="text/javascript">
+//<![CDATA
+
+$j(function() {
+	$j('#headings a').click(function(e) {
+		var filter = $(this).href.split('#');
+		filter = filter[1];
+		
+		e.preventDefault();
+	
+		$j.ajax({
+			type: "POST",
+			url:  "<?php echo $url; ?>",
+			data: ({filter: filter}),
+			dataType: "html",
+			success: function(t) {
+				$j('#gamelistcont').html(t);
+			}
+		})
+	});
+});
+
+//]]>
+</script>
+
+<ul id="headings" class="menu_heading<?php echo $class_sfx;?>"<?php
 	$tag = '';
 	if ($params->get('tag_id')!=NULL) {
 		$tag = $params->get('tag_id').'';
