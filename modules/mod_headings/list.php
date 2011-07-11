@@ -19,10 +19,13 @@ if ($_POST)
 	switch ($filter)
 	{
 		case 'top':
-			$sql = 'SELECT g.idGame, g.name, g.description, f.webpath
+			$sql = 'SELECT g.idGame, g.name, g.description, f.webpath, COUNT(u.userFB_uid) AS top_games
 				FROM game g
 				INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
-				ORDER BY g.name';
+				INNER JOIN gamesUserFb u ON u.game_idGame = g.idGame
+				GROUP BY u.game_idGame
+				ORDER BY top_games DESC
+				LIMIT 10';
 			break;
 		case 'new';
 			$sql = 'SELECT g.idGame, g.name, g.description, f.webpath
