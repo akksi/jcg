@@ -38,5 +38,9 @@ if ($_POST)
 	
 	echo json_encode($response);
 }
+else
+{
+	echo 'die';
+}
 
 ?>  

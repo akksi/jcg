@@ -70,17 +70,17 @@ if (count($list))
 <script type="text/javascript">
 //<![CDATA
 
-$j('#gamelist a').click(function(e) {
+$('#gamelist a').click(function(e) {
 	var game = $(this).id;
 	e.preventDefault();
 	
-	$j.ajax({
+	$.ajax({
 		type: "POST",
 		url:  "<?php echo $url; ?>",
 		data: ({game: game}),
 		dataType: "json",
 		success: function(t) {
-			$j('#game_preview').html(t.webpath);
+			$('#game_preview').html(t.webpath);
 		}
 	})
 });

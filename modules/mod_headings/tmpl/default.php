@@ -10,7 +10,7 @@
 // No direct access.
 defined('_JEXEC') or die;
 
-$url = JURI::base(true) . DS . 'modules' . DS . 'mod_headings' . DS . 'list.php';
+$url = JURI::base(true) . DS . 'modules' . DS . 'mod_preview' . DS . 'list.php';
 
 ?>
 

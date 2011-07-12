@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension
-	type="module"
-	version="1.6.0"
-	client="site"
-	method="upgrade">
-	<name>mod_headings</name>
-	<author>Joomla! Project</author>
+<install type="module" version="1.6.0">
+	<name>Headings</name>
+	<author>Guillermo Azurdia</author>
 	<creationDate>July 2004</creationDate>
 	<copyright>Copyright (C) 2005 - 2011 Open Source Matters. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>admin@joomla.org</authorEmail>
 	<authorUrl>www.joomla.org</authorUrl>
 	<version>1.6.0</version>
-	<description>MOD_MENU_XML_DESCRIPTION</description>
+	<description>Mod Headings</description>
 	<files>
 		<filename module="mod_headings">mod_headings.php</filename>
 		<folder>tmpl</folder>
@@ -143,4 +139,4 @@
 			</fieldset>
 		</fields>
 	</config>
-</extension>
+</install>
