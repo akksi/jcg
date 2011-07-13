@@ -1,5 +1,4 @@
 <style type="text/css">
-
 .menu_heading {
 	height: 32px;
 	list-style: none !important;
@@ -16,7 +15,6 @@
 	padding: 5px;
 	text-align: center;
 }
-
 </style>
 
 <?php
@@ -28,16 +26,21 @@ $url = JURI::base(true) . DS . 'modules' . DS . 'mod_gsearch' . DS . 'listhead.p
 <script type="text/javascript">
 //<![CDATA
 $(function() {
-	$('#sgsearch').click(function(e) {
+	$('#fsearch').submit(function(e) {
 		var term = $('#tgsearch').val();
-		var mode = $('#mgsearch').val();
+		var filt = $('#mgsearch').val();
 		
 		e.preventDefault();
-	
+		
+		if (!term) {
+			$('#tgsearch').focus();
+			return;
+		}
+		
 		$.ajax({
 			type: "POST",
 			url:  "<?php echo $url; ?>",
-			data: ({filter: filter}),
+			data: ({term: term, filt: filt}),
 			dataType: "html",
 			success: function(t) {
 				$('#gamelistcont').html(t);
@@ -49,7 +52,10 @@ $(function() {
 </script>
 
 <div id="game_gsearch">
-	<select>
+	<div>Buscar Juegos</div>
+	<form action="/" method="post" id="fsearch">
+	<input id="tgsearch" name="term" type="text" value="" />
+	<select id="mgsearch">
 	<?php
 	
 	foreach ($menu as $row)
@@ -59,4 +65,6 @@ $(function() {
 	
 	?>
 	</select>
+	<input name="search" type="submit" value="Buscar" />
+	</form>
 </div>

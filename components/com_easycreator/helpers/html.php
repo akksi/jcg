@@ -1,0 +1,75 @@
+<?php
+/**
+ * @version $Id: html.php 1173 2010-04-25 19:45:54Z elkuku $
+ * @package    EasyCreator
+ * @subpackage Frontend helpers
+ * @author     EasyJoomla {@link http://www.easy-joomla.org Easy-Joomla.org}
+ * @author     Nikolai Plath (elkuku) {@link http://www.nik-it.de NiK-IT.de}
+ * @author     Created on 24-Sep-2008
+ */
+
+//-- No direct access
+defined('_JEXEC') or die('=;)');
+
+class easyHTML
+{
+	/**
+	 * displays the 'header' for the component, starting the form
+	 *
+	 */
+	public static function start()
+	{
+		?>
+		<h1>
+			<img src="<?php echo JURI::root(); ?>components/com_easycreator/assets/images/easylogo_t.png" alt="easy-joomla logo" />
+			EasyCreator :: <small style="color: green;"><?php echo JText::_('Sandbox'); ?></small>
+		</h1>
+
+		<form name="adminForm" method="post">
+		<?php
+	}//function
+
+	/**
+	 * displays the footer, closing the form
+	 */
+	public static function end()
+	{
+		?>
+			<input type="hidden" name="ebc_project" />
+		</form>
+		<?php
+	}//function
+
+	/**
+	 * Draws a project selector.
+	 */
+	public static function projectSelector()
+	{
+		//--Get the project helper
+		JLoader::import('helpers.projecthelper', JPATH_COMPONENT_ADMINISTRATOR);
+
+		//--Get existing projects
+		$projects = EasyProjectHelper::getProjectList();
+		$selectedProject = JRequest::getVar('ebc_project');
+
+		if( ! isset($projects['component']))
+        {
+            JError::raiseWarning(100, JText::_('No_projects_found'));
+            return;
+        }
+
+        echo JText::_('Registered_projects');
+		?>
+		<ol style="list-style-type:none; text-align: left;">
+			<?php
+			foreach ($projects['component'] as $project)
+			{
+				$selected =( $project->comName == $selectedProject ) ? '_selected' : '';
+				echo '<li class="ecr_button'.$selected.'" onclick="drawProject(\''.$project->comName.'\');">'.$project->name.'</li>';
+			}//foreach
+			?>
+		</ol>
+		<?php
+	}//function
+
+}//class

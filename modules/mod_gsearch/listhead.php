@@ -14,14 +14,68 @@ $db = & JFactory::getDBO();
 
 if ($_POST)
 {
-	$terms = JRequest::getString('terms', '', 'post');
-	$filter = JRequest::getString('filter', '', 'post');
+	$term = JRequest::getString('term', '', 'post');
+	$filter = JRequest::getWord('filt', '', 'post');
 	
-	$sql = "SELECT g.idGame, g.name, g.description, f.webpath
+	/*
+	 * $sql = "SELECT g.idGame, g.name, g.description, f.webpath
 		FROM game g
 		INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
-		WHERE g.name LIKE '%" . $terms . "%'
+		WHERE g.name LIKE '%" . $term . "%'
 		ORDER BY g.name";
+	 */
+	
+	switch ($filter)
+	{
+		case 'top':
+			$sql = "SELECT g.idGame, g.name, g.description, f.webpath, COUNT(u.userFB_uid) AS top_games
+				FROM game g
+				INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
+				INNER JOIN gamesUserFb u ON u.game_idGame = g.idGame
+				WHERE g.name LIKE '%" . $term . "%'
+				GROUP BY u.game_idGame
+				ORDER BY top_games DESC
+				LIMIT 10";
+			break;
+		case 'new';
+			$sql = "SELECT g.idGame, g.name, g.description, f.webpath
+				FROM game g
+				INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
+				WHERE g.name LIKE '%" . $term . "%'
+				ORDER BY g.creationDate DESC";
+			break;
+		case 'all';
+			$sql = "SELECT g.idGame, g.name, g.description, f.webpath
+				FROM game g
+				INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
+				WHERE g.name LIKE '%" . $term . "%'
+				ORDER BY g.name";
+			break;
+		case 'my':
+			$user = JFactory::getUser();
+			$user_id = $user_id->id;
+			
+			if ($user_id)
+			{
+				$sql = 'SELECT g.idGame, g.name, g.description, f.webpath
+					FROM game g
+					INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
+					INNER JOIN gamesUserFB gu ON gu.game_idGame = g.idGame
+					INNER JOIN userFB uf ON uf.uid = gu.userFB_uid
+					INNER JOIN #__users u ON u.id = uf.uid
+					WHERE u.id = ' . (int) $user_id . "
+						AND g.name LIKE '%" . $term . "%'
+					ORDER BY g.name";
+			}
+			else
+			{
+				echo '<div align="center">Actualmente no hay juegos seleccionados.</div>';
+			}
+			
+			break;
+		default:
+			break;
+	}
 	
 	if (!empty($sql))
 	{
@@ -31,7 +85,7 @@ if ($_POST)
 		
 		if (!count($list))
 		{
-			echo '<div align="center">No se encuentra informaci&oacute;n relacionada de juegos.</div>';
+			echo '<div align="center">No se encuentran juegos relacionados al t&eacute;rmino "' . $term . '".</div>';
 		}
 	}
 	else
@@ -45,9 +99,9 @@ if ($_POST)
 		$i = 0;
 		$closed = false;
 		
-		?>
+	?>
 		
-		<table id="gamelist">
+	<table id="gamelist">
 	<?php
 	
 	foreach ($list as $row)
@@ -85,16 +139,15 @@ if ($_POST)
 	?>
 </table>
 		
-		<?php
+<?php
 	}
 	
 	$url = str_replace('/modules/mod_headings', '', JURI::base(true)) . DS . 'modules' . DS . 'mod_list' . DS . 'list.php';
 	
-	?>
+?>
 	
-	<script type="text/javascript">
+<script type="text/javascript">
 //<![CDATA
-
 $('#gamelist a').click(function(e) {
 	var game = $(this).attr('id');
 	e.preventDefault();
@@ -109,11 +162,10 @@ $('#gamelist a').click(function(e) {
 		}
 	})
 });
-
 //]]>
 </script>
 	
-	<?php
+<?php
 }
 
 ?>  
