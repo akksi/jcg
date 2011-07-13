@@ -1,14 +1,3 @@
-<?php
-
-if ($params->get('asignarCss'))
-{
-	$css = $params->get('clase');
-}
-
-$url = JURI::base(true) . DS . 'modules' . DS . 'mod_preview' . DS . 'listhead.php';
-
-?>
-
 <style type="text/css">
 
 .menu_heading {
@@ -30,13 +19,18 @@ $url = JURI::base(true) . DS . 'modules' . DS . 'mod_preview' . DS . 'listhead.p
 
 </style>
 
+<?php
+
+$url = JURI::base(true) . DS . 'modules' . DS . 'mod_gsearch' . DS . 'listhead.php';
+
+?>
+
 <script type="text/javascript">
 //<![CDATA
-
 $(function() {
-	$('.headings a').click(function(e) {
-		var filter = $(this).attr('href').split('#');
-		filter = filter[1];
+	$('#sgsearch').click(function(e) {
+		var term = $('#tgsearch').val();
+		var mode = $('#mgsearch').val();
 		
 		e.preventDefault();
 	
@@ -51,21 +45,18 @@ $(function() {
 		})
 	});
 });
-
 //]]>
 </script>
 
-<div id="game_preview"<?php if (isset($css)) { echo ' class="' . $css . '"'; } ?> >
+<div id="game_gsearch">
+	<select>
 	<?php
 	
-	foreach ($images as $row)
+	foreach ($menu as $row)
 	{
-	?>
-	
-	<a href="<?php echo ''; ?>"><img src="<?php echo $row->webpath; ?>" width="580" height="163" /></a>
-	
-	<?php
+		echo '<option value="' . $row->link . '">' . $row->name . '</option>';
 	}
 	
 	?>
+	</select>
 </div>

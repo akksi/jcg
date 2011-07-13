@@ -1,4 +1,5 @@
 
+<br />
 <ul id="thumbnails" class="jcarousel-skin-tango">
 	<?php
 	
@@ -6,7 +7,7 @@
 	{
 		foreach ($thumbnails as $row)
 		{
-			echo '<li><a id="_' . $row->idGame . '" href="#' . $row->idGame . '"><img src="' . $row->webpath . '" width="240" height="180" alt="I1" /></a></li>';
+			echo '<li><a id="_' . $row->idGame . '" href="#' . $row->idGame . '"><img src="' . $row->webpath . '" width="75" height="75" alt="" /></a></li>';
 		}
 	}
 	else
@@ -26,6 +27,7 @@
 	}
 	?>
 </ul>
+<br />
 
 <script type="text/javascript">
 //<![CDATA[
@@ -49,7 +51,7 @@ $url = JURI::base(true) . DS . 'modules' . DS . 'mod_list' . DS . 'list.php';
 //<![CDATA
 
 $('#thumbnails a').click(function(e) {
-	var game = $(this).id;
+	var game = $(this).attr('id');
 	e.preventDefault();
 
 	$.ajax({

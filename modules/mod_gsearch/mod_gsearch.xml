@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.6.0">
+	<name>Game Search</name>
+	<author>Guillermo Azurdia</author>
+	<version>1.6.0</version>
+	<creationDate>05.07.2011</creationDate>
+	<description>Modulo para buscar juegos en el sistema.</description>
+	<authorEmail>lazurdia.tpp@gmail.com</authorEmail>
+	<files>
+		<filename module="mod_gsearch">mod_gsearch.php</filename>
+		<filename>helper.php</filename>
+		<filename>mod_gsearch.xml</filename>
+		<filename>tmpl/default.php</filename>
+		<filename>tmpl/index.html</filename>
+	</files>
+</install>

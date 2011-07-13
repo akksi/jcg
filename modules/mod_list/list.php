@@ -18,7 +18,7 @@ if ($_POST)
 	
 	$sql = 'SELECT g.idGame, f.webpath
 		FROM game g
-		INNER JOIN uploaded_files f ON g.idFilePreview = f.file_id 
+		INNER JOIN uploaded_files f ON g.idFileFlash = f.file_id 
 		WHERE g.idGame = ' . (int) $game_id;
 	$db->setQuery($sql);
 	

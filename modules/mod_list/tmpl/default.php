@@ -71,7 +71,7 @@ if (count($list))
 //<![CDATA
 
 $('#gamelist a').click(function(e) {
-	var game = $(this).id;
+	var game = $(this).attr('id');
 	e.preventDefault();
 	
 	$.ajax({

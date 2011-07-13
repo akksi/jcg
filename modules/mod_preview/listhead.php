@@ -3,7 +3,7 @@
 define('_JEXEC', 1);
 define('JPATH_NOW', dirname(__FILE__));
 define('DS', DIRECTORY_SEPARATOR);
-define('JPATH_BASE', str_replace(DS . 'modules' . DS . 'mod_headings', '', JPATH_NOW));
+define('JPATH_BASE', str_replace(DS . 'modules' . DS . 'mod_preview', '', JPATH_NOW));
 require_once(JPATH_BASE . DS . 'includes' . DS . 'defines.php');
 require_once(JPATH_BASE . DS . 'includes' . DS . 'framework.php');
 require_once(JPATH_BASE . DS . 'libraries' . DS . 'joomla' . DS . 'factory.php');
@@ -56,10 +56,7 @@ if ($_POST)
 			}
 			else
 			{
-				$sql = 'SELECT g.idGame, g.name, g.description, f.webpath
-					FROM game g
-					INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
-					ORDER BY g.name';
+				echo '<div align="center">Actualmente no hay juegos seleccionados.</div>';
 			}
 			
 			break;
@@ -67,9 +64,21 @@ if ($_POST)
 			break;
 	}
 	
-	$db->setQuery($sql);
-	
-	$list = $db->loadObjectList();
+	if (!empty($sql))
+	{
+		$db->setQuery($sql);
+		
+		$list = $db->loadObjectList();
+		
+		if (!count($list))
+		{
+			echo '<div align="center">No se encuentra informaci&oacute;n relacionada de juegos.</div>';
+		}
+	}
+	else
+	{
+		$list = array();
+	}
 	
 	if (count($list))
 	{
@@ -127,17 +136,17 @@ if ($_POST)
 	<script type="text/javascript">
 //<![CDATA
 
-$j('#gamelist a').click(function(e) {
-	var game = $(this).id;
+$('#gamelist a').click(function(e) {
+	var game = $(this).attr('id');
 	e.preventDefault();
 	
-	$j.ajax({
+	$.ajax({
 		type: "POST",
 		url:  "<?php echo $url; ?>",
 		data: ({game: game}),
 		dataType: "json",
 		success: function(t) {
-			$j('#game_preview').html(t.webpath);
+			$('#game_preview').html(t.webpath);
 		}
 	})
 });
