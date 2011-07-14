@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" version="1.5.0">
+<name>claroforms</name>
+<creationDate>7/14/2011</creationDate>
+<author>Guillermo Azurdia</author>
+<authorEmail>lazurdia.tpp@gmail.com</authorEmail>
+<authorUrl></authorUrl>
+<copyright>Copyright Info</copyright>
+<license>GNU/GPL v2</license>
+<!--  The version string is recorded in the components table -->
+<version>1.00</version>
+<!-- The description is optional and defaults to the name -->
+<description>Componente para administrar la informacion de los juegos del sistema</description>
+<files folder="site">
+<filename>index.html</filename>
+<filename>claroforms.php</filename>
+<filename>controller.php</filename>
+<filename>views/index.html</filename>
+<filename>models/index.html</filename>
+<filename>views/game/index.html</filename>
+<filename>views/game/view.html.php</filename>
+<filename>views/game/metadata.xml</filename>
+<filename>views/game/tmpl/default.xml</filename>
+<filename>views/game/tmpl/default.php</filename>
+<filename>views/game/tmpl/index.html</filename>
+<filename>models/game.php</filename>
+<filename>views/gamelist/index.html</filename>
+<filename>views/gamelist/view.html.php</filename>
+<filename>views/gamelist/metadata.xml</filename>
+<filename>views/gamelist/tmpl/default.xml</filename>
+<filename>views/gamelist/tmpl/default.php</filename>
+<filename>views/gamelist/tmpl/index.html</filename>
+<filename>models/gamelist.php</filename>
+
+</files>
+<install>
+<sql>
+<file charset="utf8" driver="mysql">install.sql</file>
+</sql>
+</install>
+<uninstall>
+<sql>
+<file charset="utf8" driver="mysql">uninstall.sql</file>
+</sql>
+</uninstall>
+<languages>
+<language tag="en-GB">languages/en-GB.com_claroforms.ini</language>
+<language tag="es-GT">languages/es-GT.com_claroforms.ini</language>
+
+</languages>
+<administration>
+<menu>claroforms</menu>
+<!-- Administration Main File Copy Section -->
+<files folder="admin">
+<!-- Site Main File Copy Section -->
+<filename>index.html</filename>
+<filename>claroforms.php</filename>
+<filename>controller.php</filename>
+<filename>config.xml</filename>
+<filename>controllers/index.html</filename>
+<filename>models/index.html</filename>
+<filename>tables/index.html</filename>
+<filename>views/index.html</filename>
+<filename>views/game/index.html</filename>
+<filename>views/game/view.html.php</filename>
+<filename>views/game/tmpl/default.php</filename>
+<filename>views/game/tmpl/index.html</filename>
+<filename>models/game.php</filename>
+<filename>controllers/game.php</filename>
+<filename>tables/game.php</filename>
+<filename>views/gamelist/index.html</filename>
+<filename>views/gamelist/view.html.php</filename>
+<filename>views/gamelist/tmpl/default.php</filename>
+<filename>views/gamelist/tmpl/index.html</filename>
+<filename>models/gamelist.php</filename>
+<filename>controllers/gamelist.php</filename>
+<filename>install.sql</filename>
+<filename>uninstall.sql</filename>
+
+</files>
+<languages>
+<language tag="en-GB">languages/en-GB.com_claroforms.ini</language>
+<language tag="es-GT">languages/es-GT.com_claroforms.ini</language>
+
+</languages>
+</administration>
+</install>
