@@ -55,7 +55,8 @@ class ClaroformsModelGame extends JModel{
 	 */
 	public function &getData(){
 		// Load the data
-		if (empty( $this->_data )) {
+		if (empty($this->_data))
+		{
 			$query = 'SELECT * FROM `game` WHERE `idGame` = '.$this->_id;
 			$this->_db->setQuery( $query );
 			$this->_data = $this->_db->loadObject();
@@ -64,6 +65,82 @@ class ClaroformsModelGame extends JModel{
 			$this->_data =& $this->getTable();
 		}
 		return $this->_data;
+	}
+	
+	public function &getStatus()
+	{
+		if (empty($this->_status))
+		{
+			$sql = 'SELECT *
+				FROM status
+				ORDER BY name';
+			$this->_db->setQuery($sql);
+			$this->_status = $this->_db->loadObjectList();
+		}
+		
+		if (!$this->_status)
+		{
+			$this->_status = & $this->getTable();
+		}
+		
+		return $this->_status;
+	}
+	
+	public function &getIdfileflash()
+	{
+		if (empty($this->_fileflash))
+		{
+			$sql = 'SELECT file_id, webpath, upload_time
+				FROM uploaded_files
+				WHERE file_id = ' . (int) $this->_data->idFileFlash;
+			$this->_db->setQuery($sql);
+			$this->_fileflash = $this->_db->loadObject();
+		}
+		
+		if (!$this->_fileflash)
+		{
+			$this->_fileflash = & $this->getTable();
+		}
+		
+		return $this->_fileflash;
+	}
+	
+	public function &getIdfilepreview()
+	{
+		if (empty($this->_filepreview))
+		{
+			$sql = 'SELECT file_id, webpath, upload_time
+				FROM uploaded_files
+				WHERE file_id = ' . (int) $this->_data->idFileFlash;
+			$this->_db->setQuery($sql);
+			$this->_filepreview = $this->_db->loadObject();
+		}
+		
+		if (!$this->_filepreview)
+		{
+			$this->_filepreview = & $this->getTable();
+		}
+		
+		return $this->_filepreview;
+	}
+	
+	public function &getIdfilethumbnail()
+	{
+		if (empty($this->_filethumbnail))
+		{
+			$sql = 'SELECT file_id, webpath, upload_time
+				FROM uploaded_files
+				WHERE file_id = ' . (int) $this->_data->idFileThumbnail;
+			$this->_db->setQuery($sql);
+			$this->_filethumbnail = $this->_db->loadObject();
+		}
+		
+		if (!$this->_filethumbnail)
+		{
+			$this->_filethumbnail = & $this->getTable();
+		}
+		
+		return $this->_filethumbnail;
 	}
 
 	/**
@@ -79,14 +156,56 @@ class ClaroformsModelGame extends JModel{
 		// HTML content must be required!
 		//$data['my_html_field'] = JRequest::getVar( 'my_html_field', '', 'post', 'string', JREQUEST_ALLOWHTML );
 		
-// mcm code 
+		// mcm code 
 		$data['idGame'] = JRequest::getVar('id', '', 'post', 'int');
 		$data['idStatus'] = JRequest::getVar('idStatus', '', 'post', 'int');
 		$data['idFileFlash'] = JRequest::getVar('idFileFlash', '', 'post', 'int');
 		$data['idFilePreview'] = JRequest::getVar('idFilePreview', '', 'post', 'int');
 		$data['idFileThumbnail'] = JRequest::getVar('idFileThumbnail', '', 'post', 'int');
-// mcm code 
-
+		// mcm code
+		
+		$fileuploads = array(
+			'flash' => JRequest::getVar('uploadflash', null, 'files', 'array'),
+			'preview' => JRequest::getVar('uploadpreview', null, 'files', 'array'),
+			'thumbnail' => JRequest::getVar('uploadthumbnail', null, 'files', 'array')
+		);
+		
+		$include_filesystem = false;
+		foreach ($fileuploads as $rowtype => $file)
+		{
+			if (!empty($file['name']))
+			{
+				if (!$include_filesystem)
+				{
+					jimport('joomla.filesystem.file');
+				}
+				
+				$filename = JFile::makeSafe($file['name']);
+				
+				//Set up the source and destination of the file
+				$src = $file['tmp_name'];
+				$dest = JPATH_ROOT . '/games/' . "myfile.jpg";
+				
+				echo $dest . ' **';
+				
+				continue;
+				JFile::upload($src, $dest);
+			}
+		}
+		
+		echo '<pre>';
+		var_dump($uploadflash);
+		echo '-------------';
+		var_dump($uploadpreview);
+		echo '-------------';
+		var_dump($uploadthumbnail);
+		echo '-------------';
+		echo '</pre>';
+		exit;
+		
+		/*
+		
+		*/
 
 		// Bind the form fields to the table
 		if (!$row->bind($data)) {

@@ -1,7 +1,13 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 <?php jimport( 'joomla.html.editor' ); $editor =& JFactory::getEditor(); ?>
 <?php jimport( 'joomla.html.html' ); ?>
-<?php $data =& $this->data; ?>
+<?php
+
+$data =& $this->data;
+$dataOptions = & $this->dataOptions;
+
+?>
+
 <script type="text/javascript">
 
 	function submitbutton(pressbutton)	{
@@ -32,7 +38,7 @@
 
 </script>
 
-<form action="index.php" method="post" name="adminForm" id="adminForm">
+<form action="index.php" method="post" name="adminForm" id="adminForm" enctype="multipart/form-data">
 <div class="col100">
 	<fieldset class="adminform">
 		<legend><?php echo JText::_( 'DETAILS' ); ?></legend>
@@ -115,7 +121,18 @@
 		</label>
 	</td>
 	<td>
-		<input class="text_area" type="text" name="idStatus" id="idStatus" size="32" maxlength="11" value="<?php echo htmlspecialchars($this->data->idStatus, ENT_COMPAT, 'UTF-8');?>" />
+		<select name="idStatus" id="idStatus">
+		<?php
+		
+		while (($row = each($dataOptions['status'])) !== false)
+		{
+		?>
+			<option<?php echo ($row[1]->idStatus == $this->data-idStatus) ? ' selected="selected"' : '' ?> value="<?php echo $row[1]->idStatus; ?>"><?php echo $row[1]->name; ?></option>
+		<?php
+		}
+		
+		?>
+		</select>
 	</td>
 </tr>
 <tr>
@@ -125,7 +142,23 @@
 		</label>
 	</td>
 	<td>
-		<input class="text_area" type="text" name="idFileFlash" id="idFileFlash" size="32" maxlength="11" value="<?php echo htmlspecialchars($this->data->idFileFlash, ENT_COMPAT, 'UTF-8');?>" />
+		<?php
+		
+		while (($row = each($dataOptions['idFileFlash'])) !== false)
+		{
+		?>
+		
+		<div><?php echo $row[0]; ?>: <?php echo $row[1]; ?></div>
+		
+		<?php
+		}
+		
+		/*
+		 * <input class="text_area" type="text" name="idFileFlash" id="idFileFlash" size="32" maxlength="11" value="<?php echo htmlspecialchars($this->data->idFileFlash, ENT_COMPAT, 'UTF-8');?>" />
+		 */
+		?>
+		
+		<input name="uploadflash" type="file" value="">
 	</td>
 </tr>
 <tr>
@@ -135,7 +168,23 @@
 		</label>
 	</td>
 	<td>
-		<input class="text_area" type="text" name="idFilePreview" id="idFilePreview" size="32" maxlength="11" value="<?php echo htmlspecialchars($this->data->idFilePreview, ENT_COMPAT, 'UTF-8');?>" />
+		<?php
+		
+		while (($row = each($dataOptions['idFilePreview'])) !== false)
+		{
+		?>
+		
+		<div><?php echo $row[0]; ?>: <?php echo $row[1]; ?></div>
+		
+		<?php
+		}
+		
+		/*
+		 * <input class="text_area" type="text" name="idFilePreview" id="idFilePreview" size="32" maxlength="11" value="<?php echo htmlspecialchars($this->data->idFilePreview, ENT_COMPAT, 'UTF-8');?>" />
+		 */
+		?>
+		
+		<input name="uploadpreview" type="file" value="">
 	</td>
 </tr>
 <tr>
@@ -145,7 +194,23 @@
 		</label>
 	</td>
 	<td>
-		<input class="text_area" type="text" name="idFileThumbnail" id="idFileThumbnail" size="32" maxlength="11" value="<?php echo htmlspecialchars($this->data->idFileThumbnail, ENT_COMPAT, 'UTF-8');?>" />
+		<?php
+		
+		while (($row = each($dataOptions['idFileThumbnail'])) !== false)
+		{
+		?>
+		
+		<div><?php echo $row[0]; ?>: <?php echo $row[1]; ?></div>
+		
+		<?php
+		}
+		
+		/*
+		 * <input class="text_area" type="text" name="idFileThumbnail" id="idFileThumbnail" size="32" maxlength="11" value="<?php echo htmlspecialchars($this->data->idFileThumbnail, ENT_COMPAT, 'UTF-8');?>" />
+		 */
+		?>
+		
+		<input name="uploadthumbnail" type="file" value="">
 	</td>
 </tr>
 <!-- jcb code -->

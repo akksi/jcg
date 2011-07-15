@@ -55,7 +55,7 @@ class ClaroformsControllerGame extends ClaroformsController{
 		JRequest::setVar( 'view', 'game' );
 		JRequest::setVar( 'layout', 'default'  );
 		JRequest::setVar('hidemainmenu', 1);
-
+		
 		parent::display();
 	}
 

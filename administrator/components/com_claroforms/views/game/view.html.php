@@ -33,7 +33,7 @@ class ClaroformsViewGame extends JView
 		//get the data
 		$data =& $this->get('Data');
 		$isNew = ($data->idGame == null);
-
+		
 		$text = $isNew ? JText::_( 'NEW' ) : JText::_( 'EDIT' );
 		JToolBarHelper::title(   JText::_( 'CLAROFORMS' ).': <small>[ ' . $text.' ]</small>' );
 		JToolBarHelper::save();
@@ -48,7 +48,7 @@ class ClaroformsViewGame extends JView
 		
 		// create options for 'select' used in template
 		$dataOptions = array();
-		foreach(explode(',', '') as $field){
+		foreach(explode(' ', 'status idFileFlash idFilePreview idFileThumbnail') as $field){
 			if (!$field) continue;
 			//options array are generated in the model...
 			$dataOptions[$field] =& $this->get( ucfirst($field) );
