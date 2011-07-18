@@ -96,26 +96,6 @@ $dataOptions = & $this->dataOptions;
 </tr>
 <tr>
 	<td width="100" align="right" class="key">
-		<label for="creationIp">
-			<?php echo JText::_( 'CREATIONIP' ); ?>:
-		</label>
-	</td>
-	<td>
-		<input class="text_area" type="text" name="creationIp" id="creationIp" size="32" maxlength="255" value="<?php echo htmlspecialchars($this->data->creationIp, ENT_COMPAT, 'UTF-8');?>" />
-	</td>
-</tr>
-<tr>
-	<td width="100" align="right" class="key">
-		<label for="expirationIp">
-			<?php echo JText::_( 'EXPIRATIONIP' ); ?>:
-		</label>
-	</td>
-	<td>
-		<input class="text_area" type="text" name="expirationIp" id="expirationIp" size="32" maxlength="255" value="<?php echo htmlspecialchars($this->data->expirationIp, ENT_COMPAT, 'UTF-8');?>" />
-	</td>
-</tr>
-<tr>
-	<td width="100" align="right" class="key">
 		<label for="idStatus">
 			<?php echo JText::_( 'IDSTATUS' ); ?>:
 		</label>

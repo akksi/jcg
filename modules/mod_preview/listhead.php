@@ -23,6 +23,7 @@ if ($_POST)
 				FROM game g
 				INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
 				INNER JOIN gamesUserFb u ON u.game_idGame = g.idGame
+				WHERE g.idStatus = 1
 				GROUP BY u.game_idGame
 				ORDER BY top_games DESC
 				LIMIT 10';
@@ -31,12 +32,14 @@ if ($_POST)
 			$sql = 'SELECT g.idGame, g.name, g.description, f.webpath
 				FROM game g
 				INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
+				WHERE g.idStatus = 1
 				ORDER BY g.creationDate DESC';
 			break;
 		case 'all';
 			$sql = 'SELECT g.idGame, g.name, g.description, f.webpath
 				FROM game g
 				INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
+				WHERE g.idStatus = 1
 				ORDER BY g.name';
 			break;
 		case 'my':
@@ -52,6 +55,7 @@ if ($_POST)
 					INNER JOIN userFB uf ON uf.uid = gu.userFB_uid
 					INNER JOIN #__users u ON u.id = uf.uid
 					WHERE u.id = ' . (int) $user_id . '  
+						AND g.idStatus = 1
 					ORDER BY g.name';
 			}
 			else

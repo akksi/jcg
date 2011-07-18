@@ -6,9 +6,6 @@
  * @subpackage com_claroforms
  * @license  GNU/GPL v2
  *
- * Created with Marco's Component Creator for Joomla! 1.5
- * http://www.mmleoni.net/joomla-component-builder
- *
  */
 
 // No direct access
@@ -99,7 +96,7 @@ class ClaroformsModelGame extends JModel{
 		
 		if (!$this->_fileflash)
 		{
-			$this->_fileflash = & $this->getTable();
+			$this->_fileflash = array();
 		}
 		
 		return $this->_fileflash;
@@ -111,14 +108,14 @@ class ClaroformsModelGame extends JModel{
 		{
 			$sql = 'SELECT file_id, webpath, upload_time
 				FROM uploaded_files
-				WHERE file_id = ' . (int) $this->_data->idFileFlash;
+				WHERE file_id = ' . (int) $this->_data->idFilePreview;
 			$this->_db->setQuery($sql);
 			$this->_filepreview = $this->_db->loadObject();
 		}
 		
 		if (!$this->_filepreview)
 		{
-			$this->_filepreview = & $this->getTable();
+			$this->_filepreview = array();
 		}
 		
 		return $this->_filepreview;
@@ -137,7 +134,7 @@ class ClaroformsModelGame extends JModel{
 		
 		if (!$this->_filethumbnail)
 		{
-			$this->_filethumbnail = & $this->getTable();
+			$this->_filethumbnail = array();
 		}
 		
 		return $this->_filethumbnail;
@@ -156,13 +153,18 @@ class ClaroformsModelGame extends JModel{
 		// HTML content must be required!
 		//$data['my_html_field'] = JRequest::getVar( 'my_html_field', '', 'post', 'string', JREQUEST_ALLOWHTML );
 		
-		// mcm code 
 		$data['idGame'] = JRequest::getVar('id', '', 'post', 'int');
 		$data['idStatus'] = JRequest::getVar('idStatus', '', 'post', 'int');
-		$data['idFileFlash'] = JRequest::getVar('idFileFlash', '', 'post', 'int');
-		$data['idFilePreview'] = JRequest::getVar('idFilePreview', '', 'post', 'int');
-		$data['idFileThumbnail'] = JRequest::getVar('idFileThumbnail', '', 'post', 'int');
-		// mcm code
+		
+		if (!$data['idGame'])
+		{
+			$data['creationIp'] = htmlspecialchars($_SERVER['REMOTE_ADDR']);
+			$data['expirationIp'] = null;
+		}
+		else
+		{
+			$data['expirationIp'] = htmlspecialchars($_SERVER['REMOTE_ADDR']);
+		}
 		
 		$fileuploads = array(
 			'flash' => JRequest::getVar('uploadflash', null, 'files', 'array'),
@@ -173,40 +175,64 @@ class ClaroformsModelGame extends JModel{
 		$include_filesystem = false;
 		foreach ($fileuploads as $rowtype => $file)
 		{
-			if (!empty($file['name']))
+			if (!$include_filesystem)
 			{
-				if (!$include_filesystem)
-				{
-					jimport('joomla.filesystem.file');
-				}
-				
-				$filename = JFile::makeSafe($file['name']);
-				
-				//Set up the source and destination of the file
-				$src = $file['tmp_name'];
-				$dest = JPATH_ROOT . '/games/' . "myfile.jpg";
-				
-				echo $dest . ' **';
-				
+				$include_filesystem = true;
+				jimport('joomla.filesystem.file');
+			}
+			
+			$filename = JFile::makeSafe($file['name']);
+			
+			if (empty($filename))
+			{
 				continue;
-				JFile::upload($src, $dest);
+			}
+			
+			$filename = str_replace(' ', '', strtolower($filename));
+			$extension = strtolower(str_replace('.', '', substr($filename, strrpos($filename, '.'))));
+			
+			//Set up the source and destination of the file
+			$src = $file['tmp_name'];
+			$dest = JPATH_ROOT . '/games/' . str_replace('.' . $extension, '', $filename) . '-' . $rowtype . '.' . $extension;
+			
+			if (JFile::upload($src, $dest))
+			{
+				$sql = "SELECT file_category_id
+					FROM file_category
+					WHERE file_category_description LIKE '%" . $rowtype . "%'";
+				$this->_db->setQuery($sql);
+				$file_category = $this->_db->loadObject();
+				
+				$webpath = 'http://' . $_SERVER['SERVER_NAME'] . '/' . implode('', array_splice(explode(DS, JPATH_SITE), -1)) . str_replace(JPATH_ROOT, '', $dest);
+				$mime_type = mime_content_type($dest);
+				$file_size = filesize($dest);
+				
+				$sql = "INSERT INTO uploaded_files (file_category_id, path, webpath, file_name, mime_type, file_size, upload_time)
+					VALUES (" . $file_category->file_category_id . ", '" . $dest . "', '" . $webpath . "', '" . $filename . "', '" . $mime_type_ . "', " . $file_size . ", NOW())";
+				$this->_db->setQuery($sql);
+				$this->_db->query();
+				$upload_id = $this->_db->insertid();
+				
+				$data['idFile' . ucfirst($rowtype)] = $upload_id;
+				
+				if ($data['idGame'])
+				{
+					$sql = 'UPDATE game SET idFile' . ucfirst($rowtype) . ' = ' . (int) $upload_id . '
+						WHERE idGame = ' . (int) $data['idGame'];
+					$this->_db->setQuery($sql);
+					$this->_db->query();
+				}
 			}
 		}
 		
-		echo '<pre>';
-		var_dump($uploadflash);
-		echo '-------------';
-		var_dump($uploadpreview);
-		echo '-------------';
-		var_dump($uploadthumbnail);
-		echo '-------------';
-		echo '</pre>';
-		exit;
+		/*if (!$data['idGame'])
+		{
+			$sql = "INSERT INTO game (name, creationDate, activationDate, expirationDate, description, creationIp, idStatus, idFileFlash, idFilePreview, idFileThumbnail)
+				VALUES ('', '', '', '', '', '', 0, 0, 0, 0)";
+			$this->_db->setQuery($sql);
+			$this->_db->query();
+		}*/
 		
-		/*
-		
-		*/
-
 		// Bind the form fields to the table
 		if (!$row->bind($data)) {
 			$this->setError($this->_db->getErrorMsg());
@@ -237,14 +263,44 @@ class ClaroformsModelGame extends JModel{
 	public function delete(){
 		$cids = JRequest::getVar( 'cid', array(0), 'post', 'array' );
 
-		$row =& $this->getTable();
+		$sql = 'SELECT idStatus, name
+			FROM status
+			ORDER BY name';
+		$this->_db->setQuery($sql);
+		$status_list = $this->_db->loadObjectList();
+		
+		$status = array();
+		foreach ($status_list as $i => $row)
+		{
+			$status[$row->name] = $row->idStatus; 
+		}
+		
+		$expiration_ip = htmlspecialchars($_SERVER['REMOTE_ADDR']);
 
-		if (count( $cids )) {
-			foreach($cids as $cid) {
-				if (!$row->delete( $cid )) {
-					$this->setError( $row->getErrorMsg() );
-					return false;
+		if (count( $cids))
+		{
+			foreach ($cids as $cid)
+			{
+				$sql = 'SELECT idStatus
+					FROM game
+					WHERE idGame = ' . (int) $cid;
+				$this->_db->setQuery($sql);
+				$eachgame = $this->_db->loadObject();
+				
+				switch ($eachgame->idStatus)
+				{
+					case 1:
+						$sql = 'UPDATE game SET idStatus = ' . (int) $status['Inactivo'] . ", expirationIp = '" . $expiration_ip . "' 
+							WHERE idGame = " . (int) $cid;
+						break;
+					case 2:
+						$sql = 'UPDATE game SET idStatus = ' . (int) $status['Activo'] . ", expirationIp = '" . $expiration_ip . "' 
+							WHERE idGame = " . (int) $cid;
+						break;
 				}
+				
+				$this->_db->setQuery($sql);
+				$this->_db->query();
 			}
 		}
 		return true;

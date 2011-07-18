@@ -7,6 +7,7 @@ class modlistHelper
 		$sql = 'SELECT g.idGame, g.name, g.description, f.webpath
 			FROM game g
 			INNER JOIN uploaded_files f ON f.file_id = g.idFilePreview
+			WHERE g.idStatus = 1
 			ORDER BY g.name';
 		
 		$db = &JFactory::getDBO();

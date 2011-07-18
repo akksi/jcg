@@ -33,6 +33,7 @@ if ($_POST)
 				INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
 				INNER JOIN gamesUserFb u ON u.game_idGame = g.idGame
 				WHERE g.name LIKE '%" . $term . "%'
+					AND g.idStatus = 1
 				GROUP BY u.game_idGame
 				ORDER BY top_games DESC
 				LIMIT 10";
@@ -42,6 +43,7 @@ if ($_POST)
 				FROM game g
 				INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
 				WHERE g.name LIKE '%" . $term . "%'
+					AND g.idStatus = 1
 				ORDER BY g.creationDate DESC";
 			break;
 		case 'all';
@@ -49,6 +51,7 @@ if ($_POST)
 				FROM game g
 				INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
 				WHERE g.name LIKE '%" . $term . "%'
+					AND g.idStatus = 1
 				ORDER BY g.name";
 			break;
 		case 'my':
@@ -65,6 +68,7 @@ if ($_POST)
 					INNER JOIN #__users u ON u.id = uf.uid
 					WHERE u.id = ' . (int) $user_id . "
 						AND g.name LIKE '%" . $term . "%'
+						AND g.idStatus = 1
 					ORDER BY g.name";
 			}
 			else

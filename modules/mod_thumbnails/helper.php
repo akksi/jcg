@@ -8,7 +8,8 @@ class modthumbnailsHelper
 		
 		$sql = 'SELECT g.idGame, f.webpath
 			FROM game g
-			INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail  
+			INNER JOIN uploaded_files f ON f.file_id = g.idFileThumbnail
+				WHERE g.idStatus = 1
 			ORDER BY g.name';
 		$db->setQuery($sql);
 		
