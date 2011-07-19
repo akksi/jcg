@@ -24,7 +24,16 @@
 				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count($this->rows); ?>);" />
 			</th>
 			<th class="jcb_fieldDiv jcb_fieldLabel"><?php $numCols++; ?>
-				Edit
+				Editar
+			</th>
+			<th class="jcb_fieldDiv jcb_fieldLabel"><?php $numCols++; ?>
+				Reglas
+			</th>
+			<th class="jcb_fieldDiv jcb_fieldLabel"><?php $numCols++; ?>
+				Beneficios
+			</th>
+			<th class="jcb_fieldDiv jcb_fieldLabel"><?php $numCols++; ?>
+				Premios
 			</th>
 			<!-- Joomla! Component Builder - begin code  -->
 	<th class="jcb_fieldDiv jcb_fieldLabel"><?php $numCols++; ?>
@@ -64,24 +73,19 @@
 			$published	= JHTML::_('grid.published', $row, $i);
 		}
 		$link = JRoute::_( 'index.php?option=com_claroforms&controller=gamelist&task=edit&cid[]='. $row->idGame);
+		
+		$link_reglas = JRoute::_( 'index.php?option=com_content&idCategory=3&idGame='. $row->idGame);
+		$link_beneficios = JRoute::_( 'index.php?option=com_content&idCategory=2&idGame='. $row->idGame);
+		$link_premios = JRoute::_( 'index.php?option=com_content&idCategory=1&idGame='. $row->idGame);
 		?>
 		<tr class="<?php echo "row$k"; ?>">
-			<td>
-				<?php echo $checked; ?>
-			</td>
-			<td>
-				<!-- You can use $link var for link edit controller -->
-				<a href="<?php echo $link; ?>">[edit]</a>
-			</td>
-			<!-- Joomla! Component Builder - begin code  -->
-	<td class="jcb_fieldDiv jcb_fieldValue">
-		<?php echo $row->idGame; ?>
-	</td>
-	<td class="jcb_fieldDiv jcb_fieldValue">
-		<?php echo $row->name; ?>
-	</td>
-
-			<!-- Joomla! Component Builder - end code  -->
+			<td><?php echo $checked; ?></td>
+			<td><table class="toolbar"><tr><td class="button" id="toolbar-edit"><a href="<?php echo $link; ?>" class="toolbar"><span class="icon-32-edit" title=" Editar"></span>Editar</a></td></tr></table></td>
+			<td><a href="<?php echo $link_reglas; ?>">Reglas</a></td>
+			<td><a href="<?php echo $link_beneficios; ?>">Beneficios</a></td>
+			<td><a href="<?php echo $link_premios; ?>">Premios</a></td>
+			<td class="jcb_fieldDiv jcb_fieldValue"><?php echo $row->idGame; ?></td>
+			<td class="jcb_fieldDiv jcb_fieldValue"><?php echo $row->name; ?></td>
 			<?php if(isset($this->rows[$i]->ordering)): ?>
 			<td nowrap>
             	<?php 

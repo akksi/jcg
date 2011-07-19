@@ -19,7 +19,8 @@ if ($_POST)
 	$sql = 'SELECT g.idGame, f.webpath
 		FROM game g
 		INNER JOIN uploaded_files f ON g.idFileFlash = f.file_id 
-		WHERE g.idGame = ' . (int) $game_id;
+		WHERE g.idGame = ' . (int) $game_id . '
+			AND g.idStatus = 1';
 	$db->setQuery($sql);
 	
 	$result = $db->loadObjectList();
@@ -32,7 +33,29 @@ if ($_POST)
 	{
 		foreach ($result as $row)
 		{
-			$response['webpath'] = '<a href="#' . $row->idGame . '"><img src="' . $row->webpath . '" width="580" height="163" /></a>';
+			$extension = strtolower(str_replace('.', '', substr($row->webpath, strrpos($row->webpath, '.'))));
+			
+			$object_width = 580;
+			$object_height = 163;
+			
+			switch ($extension)
+			{
+				case 'swf':
+					$response['webpath'] = '<object data="' . $row->webpath . '" type="application/x-shockwave-flash" id="myflash" width="' . $object_width . '" height="' . $object_height . '">
+<param name="movie" value="' . $row->webpath . '" />
+<param name="bgcolor" value="#ffffff" />
+<param name="height" value="' . $object_width . '" />
+<param name="width" value="' . $object_height . '" />
+<param name="quality" value="high" />
+<param name="menu" value="false" />
+<param name="allowscriptaccess" value="samedomain" />
+<p>Adobe <a href="http://get.adobe.com/flashplayer/">Flash Player</a> is required to view this content.</p>
+</object>';
+					break;
+				default:
+					$response['webpath'] = '<a href="#' . $row->idGame . '"><img src="' . $row->webpath . '" width="' . $object_width . '" height="' . $object_height . '" /></a>';
+					break;
+			}
 		}
 	}
 	
